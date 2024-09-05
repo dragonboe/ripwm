@@ -12,7 +12,7 @@ bool readOrWriteToSharedMemory(DWORD write, DWORD* read) {
 		PAGE_READWRITE,
 		0,
 		sizeof(DWORD),
-		L"LightWMThreadId"
+		L"RipWMThreadId"
 	);
 
 	if (mapHandle == NULL) {
