@@ -16,13 +16,13 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, PWSTR cmdLine, i
 	HMODULE wmDll;
 	HHOOK hookShellProcHandle;
 
-	HANDLE currentlyRunningMutex = CreateMutexW(NULL, TRUE, L"Global\\LightWMIsCurrentlyRunning");
+	HANDLE currentlyRunningMutex = CreateMutexW(NULL, TRUE, L"Global\\LRipWMIsCurrentlyRunning");
 
 	if (currentlyRunningMutex == NULL) {
 		reportWin32Error(L"Failed creating currently running mutex");
 		goto cleanup;
 	} else if (GetLastError() == ERROR_ALREADY_EXISTS) {
-		reportGeneralError(L"LightWM is already running, exiting");
+		reportGeneralError(L"RipWM is already running, exiting");
 		goto cleanup;
 	}
 
@@ -38,10 +38,10 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, PWSTR cmdLine, i
 		goto cleanup;
 	}
 
-	wmDll = LoadLibraryW(L"lightwm_dll");
+	wmDll = LoadLibraryW(L"ripwm_dll");
 	
 	if (wmDll == NULL) {
-		reportWin32Error(L"LoadLibrary of lightwm_dll"); 
+		reportWin32Error(L"LoadLibrary of ripwm_dll"); 
 		goto cleanup;
 	}
 	
@@ -66,7 +66,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, PWSTR cmdLine, i
 	while (GetMessage(&msg, (HWND)-1, 0, 0) != 0) {
 		switch (msg.message) {
 			case WM_HOTKEY:
-				if (msg.wParam == QUIT_LIGHTWM_HOTKEY_ID) {
+				if (msg.wParam == QUIT_ripWM_HOTKEY_ID) {
 					exitCode = EXIT_OK;
 					goto cleanup;
 				}
