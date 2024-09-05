@@ -31,13 +31,7 @@ I haven't tried building with a different VS version or building x86, but that m
 
 ## Contributing
 
-One of my main goals with this project is to keep it as minimal as possible, for example I decided against using a dynamic configuration on purpose.
-
-Thus, make sure to keep the contributions as simple as possible.
-
-If you plan on adding a completely new feature, let's discuss it on the issues beforehand.
-
-Also notice that this project does not use any C library functions on purpose, only Windows API. This keeps everything as minimal as possible.
+You can change or edit.
 
 ## Coding Conventions
 
