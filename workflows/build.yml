@@ -18,6 +18,3 @@ jobs:
         run: |
           "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" amd64 && nmake release
         shell: cmd
-
-      - name: Create Release
-        run: gh release create ${{ github.event.inputs.version }} ./release/lightwm.exe ./release/lightwm_dll.dll -n "Version ${{ github.event.inputs.version }}"
