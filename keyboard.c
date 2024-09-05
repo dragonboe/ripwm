@@ -22,11 +22,11 @@ bool initializeKeyboardConfig()
 	addKeyboardKeybind(TOGGLE_FULLSCREEN_MODE_HOTKEY_ID, getKeyCode(FULLSCREEN_MODE_HOTKEY), MOD_ALT | MOD_NOREPEAT);
 	addKeyboardKeybind(NEXT_WINDOW_HOTKEY_ID, getKeyCode(NEXT_WINDOW_HOTKEY), MOD_ALT | MOD_NOREPEAT);
 	addKeyboardKeybind(PREV_WINDOW_HOTKEY_ID, getKeyCode(PREV_WINDOW_HOTKEY), MOD_ALT | MOD_NOREPEAT);
-	addKeyboardKeybind(QUIT_LIGHTWM_HOTKEY_ID, getKeyCode(QUIT_LIGHTWM_HOTKEY), MOD_ALT | MOD_NOREPEAT);
-	addKeyboardKeybind(FORCE_TILE_LIGHTWM_HOTKEY_ID, getKeyCode(FORCE_TILE_LIGHTWM_HOTKEY), MOD_ALT | MOD_NOREPEAT);
+	addKeyboardKeybind(QUIT_RIPWM_HOTKEY_ID, getKeyCode(QUIT_RIPWM_HOTKEY), MOD_ALT | MOD_NOREPEAT);
+	addKeyboardKeybind(FORCE_TILE_RIPWM_HOTKEY_ID, getKeyCode(FORCE_TILE_RIPWM_HOTKEY), MOD_ALT | MOD_NOREPEAT);
 	
 	for (int i = 0; i < 9; i++) {
-		addKeyboardKeybind(WORKSPACE_LIGHTWM_HOTKEY_ID_BASE + i, getKeyCode('1' + i), MOD_ALT | MOD_NOREPEAT);
+		addKeyboardKeybind(WORKSPACE_RIPWM_HOTKEY_ID_BASE + i, getKeyCode('1' + i), MOD_ALT | MOD_NOREPEAT);
 	}
 	
 	for (int i = 0; i < 9; i++) {
@@ -41,11 +41,11 @@ void cleanupKeyboard()
 	UnregisterHotKey(NULL, TOGGLE_FULLSCREEN_MODE_HOTKEY_ID);
 	UnregisterHotKey(NULL, NEXT_WINDOW_HOTKEY_ID);
 	UnregisterHotKey(NULL, PREV_WINDOW_HOTKEY_ID);
-	UnregisterHotKey(NULL, QUIT_LIGHTWM_HOTKEY_ID);
-	UnregisterHotKey(NULL, FORCE_TILE_LIGHTWM_HOTKEY_ID);
+	UnregisterHotKey(NULL, QUIT_RIPWM_HOTKEY_ID);
+	UnregisterHotKey(NULL, FORCE_TILE_RIPWM_HOTKEY_ID);
 	
 	for (int i = 0; i < 9; i++) {
-		UnregisterHotKey(NULL, WORKSPACE_LIGHTWM_HOTKEY_ID_BASE + i);
+		UnregisterHotKey(NULL, WORKSPACE_RIPWM_HOTKEY_ID_BASE + i);
 		UnregisterHotKey(NULL, SWITCH_WORKSPACE_HOTKEY_ID + i);
 	}
 }
@@ -62,13 +62,13 @@ void handleHotkey(WPARAM wparam, LPARAM lparam)
 		case PREV_WINDOW_HOTKEY_ID:
 			focusNextWindow(true);
 			break;
-		case FORCE_TILE_LIGHTWM_HOTKEY_ID:
+		case FORCE_TILE_RIPWM_HOTKEY_ID:
 			tileWindows();
 			break;
 	}
 
-	if (wparam >= WORKSPACE_LIGHTWM_HOTKEY_ID_BASE && wparam < WORKSPACE_LIGHTWM_HOTKEY_ID_BASE + 9) {
-		gotoWorkspace((int)wparam - WORKSPACE_LIGHTWM_HOTKEY_ID_BASE + 1);
+	if (wparam >= WORKSPACE_RIPWM_HOTKEY_ID_BASE && wparam < WORKSPACE_RIPWM_HOTKEY_ID_BASE + 9) {
+		gotoWorkspace((int)wparam - WORKSPACE_RIPWM_HOTKEY_ID_BASE + 1);
 	} else if (wparam >= SWITCH_WORKSPACE_HOTKEY_ID && wparam < SWITCH_WORKSPACE_HOTKEY_ID + 9) {
 		moveWindowToWorkspace((int)wparam - SWITCH_WORKSPACE_HOTKEY_ID + 1);
 	}
