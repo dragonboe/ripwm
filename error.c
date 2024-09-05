@@ -3,7 +3,7 @@
 
 void reportGeneralError(WCHAR* message)
 {
-	MessageBoxW(NULL, message, L"LightWM Error", MB_OK); 
+	MessageBoxW(NULL, message, L"ripwm Error", MB_OK); 
 }
 
 void reportWin32Error(WCHAR* message)
