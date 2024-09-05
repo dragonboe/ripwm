@@ -1,0 +1,2 @@
+# ripwm
+Rip Window Manager
