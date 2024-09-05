@@ -1,0 +1,23 @@
+name: Build & Release
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: windows-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsall.bat" amd64 && nmake release
+        shell: cmd
+
+      - name: Create Release
+        run: gh release create ${{ github.event.inputs.version }} ./release/lightwm.exe ./release/lightwm_dll.dll -n "Version ${{ github.event.inputs.version }}"
